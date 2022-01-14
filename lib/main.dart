@@ -79,31 +79,34 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        body: FutureBuilder<WeatherInfo>(
-      future: futureWeather,
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.waiting) {
-          return const Center(
-            child: CircularProgressIndicator(),
-          );
-        } else {
-          if (snapshot.hasData && snapshot.data != null) {
-            return MainWidget(
-              location: snapshot.data!.location,
-              temp: snapshot.data!.temp,
-              tempMax: snapshot.data!.tempMax,
-              tempMin: snapshot.data!.tempMin,
-              weather: snapshot.data!.weather,
-              humidity: snapshot.data!.humidity,
-              windSpeed: snapshot.data!.windSpeed,
-            );
-          } else {
-            return const Center(
-              child: Text("No Data Available"),
-            );
-          }
-        }
-      },
-    ));
+        backgroundColor: Colors.grey[300],
+        body: SafeArea(
+          child: FutureBuilder<WeatherInfo>(
+            future: futureWeather,
+            builder: (context, snapshot) {
+              if (snapshot.connectionState == ConnectionState.waiting) {
+                return const Center(
+                  child: CircularProgressIndicator(),
+                );
+              } else {
+                if (snapshot.hasData && snapshot.data != null) {
+                  return MainWidget(
+                    location: snapshot.data!.location,
+                    temp: snapshot.data!.temp,
+                    tempMax: snapshot.data!.tempMax,
+                    tempMin: snapshot.data!.tempMin,
+                    weather: snapshot.data!.weather,
+                    humidity: snapshot.data!.humidity,
+                    windSpeed: snapshot.data!.windSpeed,
+                  );
+                } else {
+                  return const Center(
+                    child: Text("No Data Available"),
+                  );
+                }
+              }
+            },
+          ),
+        ));
   }
 }

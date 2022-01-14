@@ -22,11 +22,12 @@ class MainWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
       children: [
         Container(
           height: MediaQuery.of(context).size.height / 2,
           width: MediaQuery.of(context).size.width,
-          color: Color(0xffffffff),
+          color: Colors.grey[300],
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
@@ -54,7 +55,37 @@ class MainWidget extends StatelessWidget {
                     color: Color(0xff9e9e9e),
                     fontSize: 14,
                     fontWeight: FontWeight.w600),
-              )
+              ),
+              SizedBox(height: 75),
+              Container(
+                  decoration: BoxDecoration(
+                    color: Colors.grey[300],
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white,
+                        offset: Offset(-5, -5),
+                        blurRadius: 8,
+                      ),
+                      BoxShadow(
+                        color: Colors.grey,
+                        offset: Offset(5, 5),
+                        blurRadius: 8,
+                      )
+                    ],
+                    borderRadius: BorderRadius.circular(12),
+                  ),
+                  padding: EdgeInsets.all(10),
+                  margin: EdgeInsets.only(bottom: 15, right: 25, left: 25),
+                  child: TextField(
+                    cursorColor: Colors.purple,
+                    cursorHeight: 25,
+                    cursorWidth: 4,
+                    style: TextStyle(fontSize: 20),
+                    decoration: InputDecoration(
+                        hintText: "Enter PinCode",
+                        hintStyle: TextStyle(fontSize: 17),
+                        border: InputBorder.none),
+                  ))
             ],
           ),
         ),
